@@ -113,14 +113,14 @@ class TW_Clients_Plugin_Settings {
 			'fields'				=> array(
 				array(
 					'id' 			=> 'tw_client_category',
-					'label'			=> __( 'Enable Categories', 'tw-clients-plugin' ),
+					'label'			=> __( 'Categories', 'tw-clients-plugin' ),
 					'description'	=> __( 'Enable Client categories', 'tw-clients-plugin' ),
 					'type'			=> 'checkbox',
 					'default'		=> ''
 				),
 				array(
 					'id' 			=> 'tw_client_tag',
-					'label'			=> __( 'Enable Tags', 'tw-clients-plugin' ),
+					'label'			=> __( 'Tags', 'tw-clients-plugin' ),
 					'description'	=> __( 'Enable Client tags', 'tw-clients-plugin' ),
 					'type'			=> 'checkbox',
 					'default'		=> ''
@@ -152,7 +152,7 @@ class TW_Clients_Plugin_Settings {
   		if($testimonials){
         $settings['relationships']['fields'][] = array(
 					'id' 			=> 'tw_client_testimonials',
-					'label'			=> __( 'Enable Testimonials', 'tw-clients-plugin' ),
+					'label'			=> __( 'Testimonials', 'tw-clients-plugin' ),
 					'description'	=> __( 'Enable Client Testimonials', 'tw-projects-plugin' ),
 					'type'			=> 'checkbox',
 					'default'		=> ''
@@ -162,7 +162,7 @@ class TW_Clients_Plugin_Settings {
   		if($projects){
         $settings['relationships']['fields'][] = array(
 					'id' 			=> 'tw_client_projects',
-					'label'			=> __( 'Enable Projects', 'tw-clients-plugin' ),
+					'label'			=> __( 'Projects', 'tw-clients-plugin' ),
 					'description'	=> __( 'Enable Client Projects', 'tw-clients-plugin' ),
 					'type'			=> 'checkbox',
 					'default'		=> ''
@@ -170,6 +170,38 @@ class TW_Clients_Plugin_Settings {
   		}
 
     }
+
+
+
+    $settings['advanced'] = array(
+			'title'					=> __( 'Advanced', 'tw-clients-plugin' ),
+			'description'			=> __( 'Third Wunder Clients plugin advanced settings.', 'tw-clients-plugin' ),
+			'fields'				=> array(
+				array(
+					'id' 			=> 'tw_client_slug',
+					'label'			=> __( 'Slug', 'tw-clients-plugin' ),
+					'description'	=> __( 'Client custom post type slug', 'tw-clients-plugin' ),
+					'type'			=> 'text',
+					'default'		=> 'client',
+					'placeholder' => 'client',
+				),
+				array(
+					'id' 			=> 'tw_client_search',
+					'label'			=> __( 'Exclude from Search', 'tw-clients-plugin' ),
+					'description'	=> __( 'Hide Clients items from search results', 'tw-clients-plugin' ),
+					'type'			=> 'checkbox',
+					'default'		=> ''
+				),
+				array(
+					'id' 			=> 'tw_client_archive',
+					'label'			=> __( 'Has Archive', 'tw-clients-plugin' ),
+					'description'	=> __( 'Enable an archive page for Clients custom post type', 'tw-clients-plugin' ),
+					'type'			=> 'checkbox',
+					'default'		=> 'on'
+				),
+			)
+		);
+
 
 		$settings = apply_filters( $this->parent->_token . '_settings_fields', $settings );
 

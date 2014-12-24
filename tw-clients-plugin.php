@@ -53,8 +53,13 @@ function TW_Clients_Plugin () {
 TW_Clients_Plugin();
 $prefix = 'tw_';
 
-$clients_category = get_option('wpt_tw_client_category') ? get_option('wpt_tw_client_category') : "off";
-$clients_tag      = get_option('wpt_tw_client_tag')      ? get_option('wpt_tw_client_tag') : "off";
+$client_slug = get_option('wpt_tw_client_slug') ? get_option('wpt_tw_client_slug') : "client";
+
+$client_search  = get_option('wpt_tw_client_search') ? true : false;
+$client_archive = get_option('wpt_tw_client_archive') ? true : false;
+
+$client_category = get_option('wpt_tw_client_category') ? get_option('wpt_tw_client_category') : "off";
+$client_tag      = get_option('wpt_tw_client_tag')      ? get_option('wpt_tw_client_tag') : "off";
 
 $client_testimonials = get_option('wpt_tw_client_testimonials') ? get_option('wpt_tw_client_testimonials') : "off";
 $client_projects     = get_option('wpt_tw_client_projects')     ? get_option('wpt_tw_client_projects') : "off";
@@ -66,15 +71,17 @@ TW_Clients_Plugin()->register_post_type(
                         __( 'Clients CPT', 'tw-clients-plugin'),
                         array(
                           'menu_icon'=>plugins_url( 'assets/img/cpt-icon-client.png', __FILE__ ),
-                          'rewrite' => array('slug' => 'client'),
+                          'rewrite' => array('slug' => $client_slug),
+                          'exclude_from_search' => $client_search,
+                          'has_archive'     => $client_archive,
                         )
                     );
 
-if($clients_category=='on'){
+if($client_category=='on'){
   TW_Clients_Plugin()->register_taxonomy( 'tw_client_category', __( 'Client Categories', 'tw-clients-plugin' ), __( 'Client Category', 'tw' ), 'tw_client', array('hierarchical'=>true) );
 }
 
-if($clients_tag=='on'){
+if($client_tag=='on'){
  TW_Clients_Plugin()->register_taxonomy( 'tw_client_tag', __( 'Client Tags', 'tw-clients-plugin' ), __( 'Client Tag', 'tw-clients-plugin' ), 'tw_client', array('hierarchical'=>false) );
 }
 
